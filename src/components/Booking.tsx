@@ -17,6 +17,8 @@ export default function Booking() {
 
   const [errors, setErrors] = useState<Partial<BookingFormState>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [apiError, setApiError] = useState('');
   const [bookings, setBookings] = useState<AppointmentRequest[]>([]);
   const [activeTab, setActiveTab] = useState<'form' | 'my-bookings'>('form');
 
@@ -76,36 +78,58 @@ export default function Booking() {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      const newBooking: AppointmentRequest = {
-        ...formData,
-        id: 'booking_' + Date.now(),
-        submittedAt: new Date().toLocaleDateString('en-CA', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
-        }),
-        status: 'Pending'
-      };
+      setIsSubmitting(true);
+      setApiError('');
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
 
-      const updatedBookings = [newBooking, ...bookings];
-      saveBookings(updatedBookings);
-      setIsSubmitted(true);
-      
-      // Reset form fields
-      setFormData({
-        fname: '',
-        lname: '',
-        email: '',
-        phone: '',
-        apptType: '',
-        apptMode: '',
-        message: ''
-      });
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.error || 'Failed to send your request.');
+        }
+
+        const newBooking: AppointmentRequest = {
+          ...formData,
+          id: 'booking_' + Date.now(),
+          submittedAt: new Date().toLocaleDateString('en-CA', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          }),
+          status: 'Pending'
+        };
+
+        const updatedBookings = [newBooking, ...bookings];
+        saveBookings(updatedBookings);
+        setIsSubmitted(true);
+        
+        // Reset form fields
+        setFormData({
+          fname: '',
+          lname: '',
+          email: '',
+          phone: '',
+          apptType: '',
+          apptMode: '',
+          message: ''
+        });
+      } catch (err: any) {
+        console.error('Submission error:', err);
+        setApiError(err.message || 'We could not submit your request at this time. Please try again or call us.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -417,12 +441,28 @@ export default function Booking() {
                         />
                       </div>
 
+                      {apiError && (
+                        <div className="bg-red-50 text-red-600 p-3 rounded-sm border border-red-200 text-xs font-medium">
+                          {apiError}
+                        </div>
+                      )}
+
                       {/* Action Button */}
                       <button
                         type="submit"
-                        className="w-full py-3.5 mt-2 bg-forest hover:bg-sage-dark text-cream text-xs font-semibold tracking-widest uppercase rounded-sm shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer text-center"
+                        disabled={isSubmitting}
+                        className={`w-full py-3.5 mt-2 bg-forest hover:bg-sage-dark text-cream text-xs font-semibold tracking-widest uppercase rounded-sm shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer text-center flex items-center justify-center gap-2 ${
+                          isSubmitting ? 'opacity-80 cursor-not-allowed' : ''
+                        }`}
                       >
-                        Send Appointment Request
+                        {isSubmitting ? (
+                          <>
+                            <span className="w-4 h-4 border-2 border-cream border-t-transparent rounded-full animate-spin" />
+                            Sending Request...
+                          </>
+                        ) : (
+                          'Send Appointment Request'
+                        )}
                       </button>
 
                       <p className="text-center text-[10px] text-text-soft/60 italic pt-2">
