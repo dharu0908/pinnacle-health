@@ -1,0 +1,6 @@
+{
+  "name": "Pinnacle Health & Wellness",
+  "description": "An elegant, holistic website for Pinnacle Health & Wellness Clinic in Windsor, Ontario, led by Registered Homeopath Pooja Jani.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
