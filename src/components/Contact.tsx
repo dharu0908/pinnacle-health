@@ -128,25 +128,7 @@ export default function Contact({ onScrollTo }: ContactProps) {
                 </div>
               </div>
 
-              /* {/* Item: Hours */}
-              <div className="flex gap-4 py-3">
-                <div className="w-10 h-10 bg-cream rounded-full flex items-center justify-center flex-shrink-0 text-sage-dark">
-                  <Clock className="w-4 h-4" />
-                </div>
-                <div className="w-full">
-                  <h4 className="text-[10px] font-bold tracking-widest uppercase text-sage-dark mb-2">
-                    Office Hours
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1.5 max-w-md">
-                    {OFFICE_HOURS.map((oh, i) => (
-                      <div key={i} className="flex justify-between items-center text-xs py-0.5 border-b border-cream-dark/20 sm:border-none">
-                        <span className="text-text-soft font-light">{oh.day}</span>
-                        <span className="text-forest font-medium">{oh.hours}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div> */
+             
 
             </div>
 
