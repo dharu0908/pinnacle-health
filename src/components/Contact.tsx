@@ -128,7 +128,7 @@ export default function Contact({ onScrollTo }: ContactProps) {
                 </div>
               </div>
 
-              {/* Item: Hours */}
+              /* {/* Item: Hours */}
               <div className="flex gap-4 py-3">
                 <div className="w-10 h-10 bg-cream rounded-full flex items-center justify-center flex-shrink-0 text-sage-dark">
                   <Clock className="w-4 h-4" />
@@ -146,7 +146,7 @@ export default function Contact({ onScrollTo }: ContactProps) {
                     ))}
                   </div>
                 </div>
-              </div>
+              </div> */
 
             </div>
 
