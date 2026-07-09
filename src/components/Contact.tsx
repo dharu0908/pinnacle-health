@@ -104,8 +104,8 @@ export default function Contact({ onScrollTo }: ContactProps) {
                     Phone / WhatsApp
                   </h4>
                   <p className="text-sm text-text font-medium leading-normal">
-                    <a href="tel:+15190000000" className="hover:text-sage transition-colors">
-                      (519) 000-0000
+                    <a href="tel:+19053254707" className="hover:text-sage transition-colors">
+                      +1 (905) 325-4707
                     </a>
                   </p>
                 </div>
