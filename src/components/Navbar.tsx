@@ -50,7 +50,7 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
           onClick={() => handleLinkClick('hero')}
           className="hover:opacity-95 transition-opacity cursor-pointer text-left"
         >
-          <BrandLogo className="h-10 md:h-11" variant="light" />
+          <BrandLogo className="h-12 md:h-14" variant="light" />
         </button>
 
         {/* Desktop Links */}
@@ -104,7 +104,7 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
             >
               <div>
                 <div className="flex items-center justify-between mb-12">
-                  <BrandLogo className="h-8 md:h-9" variant="light" />
+                  <BrandLogo className="h-10 md:h-11" variant="light" />
                   <button
                     onClick={() => setIsMobileOpen(false)}
                     className="text-forest hover:text-sage p-1 cursor-pointer"
