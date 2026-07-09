@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Leaf, Calendar } from 'lucide-react';
+import { Menu, X, Calendar } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 
 interface NavbarProps {
   onScrollTo: (elementId: string) => void;
@@ -47,12 +48,9 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
       >
         <button
           onClick={() => handleLinkClick('hero')}
-          className="flex items-center gap-2 font-serif text-lg md:text-xl font-medium text-forest hover:opacity-90 transition-opacity cursor-pointer text-left"
+          className="hover:opacity-95 transition-opacity cursor-pointer text-left"
         >
-          <Leaf className="w-5 h-5 text-sage animate-pulse" />
-          <span>
-            Pinnacle <span className="text-sage font-light">Health & Wellness</span>
-          </span>
+          <BrandLogo className="h-10 md:h-11" variant="light" />
         </button>
 
         {/* Desktop Links */}
@@ -106,9 +104,7 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
             >
               <div>
                 <div className="flex items-center justify-between mb-12">
-                  <span className="font-serif text-lg text-forest font-medium">
-                    Pinnacle <span className="text-sage font-light">Wellness</span>
-                  </span>
+                  <BrandLogo className="h-8 md:h-9" variant="light" />
                   <button
                     onClick={() => setIsMobileOpen(false)}
                     className="text-forest hover:text-sage p-1 cursor-pointer"

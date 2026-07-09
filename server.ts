@@ -117,7 +117,7 @@ async function startServer() {
       if (SMTP_HOST && SMTP_USER && SMTP_PASS) {
         console.log(`Sending real booking request email to ${recipientEmail} via SMTP...`);
         
-        // Setup transporter
+        // Setup transporter with TLS options optimized for Office 365 / standard SMTP servers
         const transporter = nodemailer.createTransport({
           host: SMTP_HOST,
           port: parseInt(SMTP_PORT || '587', 10),
@@ -126,6 +126,11 @@ async function startServer() {
             user: SMTP_USER,
             pass: SMTP_PASS,
           },
+          tls: {
+            ciphers: 'SSLv3',
+            rejectUnauthorized: false
+          },
+          requireTLS: true
         });
 
         // Send email
@@ -154,12 +159,12 @@ async function startServer() {
           success: true, 
           emailSent: false, 
           devMode: true,
-          message: 'Booking saved successfully! Note: Configure SMTP keys in theSecrets panel to enable live email delivery.'
+          message: 'Booking saved successfully! Note: Configure SMTP keys in the Secrets panel to enable live email delivery.'
         });
       }
     } catch (error: any) {
       console.error('Error handling booking request / dispatching email:', error);
-      res.status(500).json({ error: 'Internal server error', details: error.message || error });
+      res.status(500).json({ error: error.message || 'Internal server error', details: error.message || error });
     }
   });
 

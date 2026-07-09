@@ -1,5 +1,5 @@
 import React from 'react';
-import { Leaf } from 'lucide-react';
+import BrandLogo from './BrandLogo';
 
 interface FooterProps {
   onScrollTo: (elementId: string) => void;
@@ -33,12 +33,9 @@ export default function Footer({ onScrollTo }: FooterProps) {
           <div className="md:col-span-6 flex flex-col space-y-4">
             <button
               onClick={() => onScrollTo('hero')}
-              className="flex items-center gap-2 font-serif text-xl font-medium text-white hover:opacity-90 transition-opacity cursor-pointer text-left self-start"
+              className="hover:opacity-95 transition-opacity cursor-pointer text-left self-start"
             >
-              <Leaf className="w-5 h-5 text-sage-light" />
-              <span>
-                Pinnacle <span className="text-sage-light font-light">Health & Wellness</span>
-              </span>
+              <BrandLogo className="h-10 md:h-11" variant="dark" />
             </button>
             <p className="text-xs sm:text-sm text-cream/60 leading-relaxed font-light max-w-sm">
               Pinnacle Health &amp; Wellness Clinic offers classical homeopathic care for the whole family. Serving Windsor, Ontario and virtually across the province with compassion, expertise, and commitment to your wellbeing.

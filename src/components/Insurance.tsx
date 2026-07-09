@@ -60,7 +60,7 @@ export default function Insurance() {
 
             <div className="text-sm sm:text-base font-light text-text-soft leading-relaxed space-y-4 mb-8">
               <p>
-                Many extended health benefit plans cover homeopathy consultations. I am a Registered Homeopath with the College of Homeopaths of Ontario (CHO) and a member of the Canadian Society of Homeopaths (CSH), making my services eligible for reimbursement through several major insurers.
+                Many extended health benefit plans cover homeopathy consultations. I am a Registered Homeopath with the College of Homeopaths of Ontario (CHO) and a member of the Ontario Homeopathic Medical Association (OHMA), making my services eligible for reimbursement through several major insurers.
               </p>
               <p>
                 I encourage you to contact your insurance provider to ask whether your plan includes coverage for Registered Homeopaths. Many employer group benefit plans include paramedical and complementary medicine coverage.
